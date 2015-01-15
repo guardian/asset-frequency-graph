@@ -1,0 +1,16 @@
+{
+  "name": "asset-frequency-graph",
+  "version": "0.1.0",
+  "description": "Asset frequency graph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guardian/asset-frequency-graph.git"
+  },
+  "dependencies": {
+    "async": "0.9.0",
+    "git-promise": "0.2.0",
+    "glob": "4.3.4",
+    "progress": "1.1.8"
+  },
+  "license": "MIT"
+}

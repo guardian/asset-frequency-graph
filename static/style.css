@@ -1,0 +1,22 @@
+.package {
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 90%;
+	line-height: 1;
+	color: #ffffff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 2px;
+	margin-right: 4px;
+}
+
+.package.one {
+	background-color: #009688;
+}
+.package.two {
+	background-color: #3F51B5;
+}
+.package.three {
+	background-color: #FF5722;
+}
