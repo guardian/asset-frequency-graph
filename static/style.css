@@ -11,12 +11,12 @@
 	margin-right: 4px;
 }
 
-.package.one {
+.package.app {
 	background-color: #009688;
 }
-.package.two {
+.package.commercial {
 	background-color: #3F51B5;
 }
-.package.three {
+.package.common {
 	background-color: #FF5722;
 }
