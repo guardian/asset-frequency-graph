@@ -6,7 +6,7 @@ var config = {
         'bootstraps/commercial.js',
         'bootstraps/common.js'
     ],
-    limit: 30,
+    limit: 10,
     destination: 'tmp'
 };
 
@@ -26,7 +26,7 @@ Promise.all([
         merges = result[1],
         dependentMap = dependencies.reverseGraph(graph);
 
-    return analize(dependentMap, merges);
+    return analize(dependentMap, merges, graph);
 })
 .then(function (total) {
     output.toHTML(total);
