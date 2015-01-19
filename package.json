@@ -11,7 +11,8 @@
     "es6-promise": "^2.0.1",
     "git-promise": "0.2.0",
     "glob": "4.3.4",
-    "progress": "1.1.8"
+    "progress": "1.1.8",
+    "madge": "0.4.1"
   },
   "license": "MIT"
 }
