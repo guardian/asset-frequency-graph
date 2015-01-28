@@ -12,7 +12,8 @@
     "git-promise": "0.2.0",
     "glob": "4.3.4",
     "progress": "1.1.8",
-    "madge": "0.4.1"
+    "madge": "0.4.1",
+    "path": "~0.4.9"
   },
   "license": "MIT"
 }
