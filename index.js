@@ -4,7 +4,7 @@ var config = {
     seeds: [
         'bootstraps/app.js',
         'bootstraps/commercial.js',
-        'bootstraps/common.js'
+        'core.js'
     ],
     limit: 10,
     destination: 'tmp'
@@ -12,13 +12,13 @@ var config = {
 
 var Promise = require('es6-promise').Promise;
 var files = require('./lib/files')(config);
-var dependencies = require('./lib/dependencies');
+var dependencies = require('./lib/dependencies')(config);
 var git = require('./lib/git')(config);
 var output = require('./lib/output')(config);
 var analize = require('./lib/analize')(config);
 
 Promise.all([
-    files.findDependencies(dependencies.iterate),
+    files.findDependencies(dependencies.getSeedDeps),
     git.getAllMergedPullRequests()
 ])
 .then(function (result) {
