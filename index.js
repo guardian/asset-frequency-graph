@@ -6,7 +6,7 @@ var config = {
         'bootstraps/commercial.js',
         'core.js'
     ],
-    limit: 10,
+    limit: 40,
     destination: 'tmp'
 };
 
@@ -18,7 +18,7 @@ var output = require('./lib/output')(config);
 var analize = require('./lib/analize')(config);
 
 Promise.all([
-    files.findDependencies(dependencies.getSeedDeps),
+    files.findDependencies(dependencies.iterate),
     git.getAllMergedPullRequests()
 ])
 .then(function (result) {

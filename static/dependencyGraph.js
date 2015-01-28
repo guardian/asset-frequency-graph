@@ -63,7 +63,7 @@
 
         Object.keys(raw).forEach(function (seed) {
             var parent = matrix.addAndGet(seed);
-            matrix.markDependencies(parent, raw[seed]);
+            matrix.markDependencies(parent, raw[seed].dependencies);
         });
 
         return matrix;
@@ -97,12 +97,12 @@
         return this.rows[position];
     };
     Matrix.prototype.markDependencies = function (from, objectTo) {
-        Object.keys(objectTo).forEach(function (to) {
-            var dependant = this.addAndGet(to);
+        objectTo.forEach(function (to) {
+            var dependant = this.addAndGet(to.name);
             from.mark(dependant);
 
-            if (objectTo[to]) {
-                this.markDependencies(dependant, objectTo[to]);
+            if (to.dependencies.length) {
+                this.markDependencies(dependant, to.dependencies);
             }
         }, this);
     };
