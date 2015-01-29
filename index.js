@@ -7,7 +7,8 @@ var config = {
         'core.js'
     ],
     limit: 30,
-    destination: 'tmp'
+    destination: 'tmp',
+    verbose: false
 };
 
 var Promise = require('es6-promise').Promise;
@@ -24,9 +25,10 @@ Promise.all([
 .then(function (result) {
     var graph = result[0],
         merges = result[1],
-        dependentMap = dependencies.reverseGraph(graph);
+        dependentMap = dependencies.reverseGraph(graph),
+        matrix = dependencies.matrix(graph);
 
-    return analize(dependentMap, merges, graph);
+    return analize(dependentMap, merges, graph, matrix);
 })
 .then(function (total) {
     output.toHTML(total);
