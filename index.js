@@ -12,12 +12,16 @@ module.exports = function (config, callback) {
         verbose: false
     };
 
+    var mkdirp = require('mkdirp');
+    var fs = require('fs');
+    var path = require('path');
     var Promise = require('es6-promise').Promise;
     var files = require('./lib/files')(config);
     var dependencies = require('./lib/dependencies')(config);
     var git = require('./lib/git')(config);
     var output = require('./lib/output')(config);
     var analize = require('./lib/analize')(config);
+    var logger = require('./lib/logger');
 
     Promise.all([
         files.findDependencies(dependencies.iterate),
@@ -34,11 +38,25 @@ module.exports = function (config, callback) {
         return analize(dependentMap, merges, graph, matrix, stat);
     })
     .then(function (total) {
-        output.toHTML(total);
-        callback(total);
+        var html = output.toHTML(total);
+        mkdirp(path.dirname(config.destination), function (err) {
+            if (err) {
+                console.error(err);
+                callback();
+            } else {
+                logger('Writing results to ' + config.destination);
+                fs.writeFile(config.destination, output.toHTML(total), function (error) {
+                    if (error) {
+                        console.error(err);
+                    }
+                    callback(total);
+                });
+            }
+        });
     })
     .catch(function (error) {
         console.trace(error);
+        callback();
     });
 };
 
