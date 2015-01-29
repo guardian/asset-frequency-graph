@@ -1,4 +1,4 @@
-module.exports = function (config) {
+module.exports = function (config, callback) {
     config = config || {
         basePath: '../frontend',
         staticFolder: 'static/src/javascripts',
@@ -35,6 +35,7 @@ module.exports = function (config) {
     })
     .then(function (total) {
         output.toHTML(total);
+        callback(total);
     })
     .catch(function (error) {
         console.trace(error);
