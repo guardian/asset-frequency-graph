@@ -6,7 +6,7 @@ var config = {
         'bootstraps/commercial.js',
         'core.js'
     ],
-    limit: 40,
+    limit: 30,
     destination: 'tmp'
 };
 

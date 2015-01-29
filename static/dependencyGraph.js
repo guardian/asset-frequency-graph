@@ -1,7 +1,9 @@
 (function () {
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     function chordDiagram () {
         var chart = d3.chart.dependencyWheel()
-            .margin(150)
+            .margin(300)
+            .width(viewportWidth)
             .padding(0.02);
         d3.select('#chord')
             .datum(generateChordData(RAW_DATA.graph))
@@ -9,8 +11,8 @@
     }
 
     function forceDiagram () {
-        var width = 960,
-            height = 500;
+        var width = viewportWidth,
+            height = 600;
 
         var color = d3.scale.category20();
 
@@ -141,7 +143,7 @@
                 }
                 return {
                     name: file,
-                    group: ['app', 'commercial', 'common'].indexOf(file) === -1 ? 0 : 1
+                    group: ['app', 'commercial', 'core'].indexOf(file) === -1 ? 0 : 1
                 };
             }),
             links: links
