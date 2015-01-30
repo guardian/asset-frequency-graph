@@ -9,16 +9,35 @@
 	vertical-align: baseline;
 	border-radius: 2px;
 	margin-right: 4px;
+	background-color: #aaa;
 }
 
-.package.app {
+.package.p1 {
 	background-color: #009688;
 }
-.package.commercial {
+.package.p2 {
 	background-color: #3F51B5;
 }
-.package.core {
+.package.p3 {
 	background-color: #FF5722;
+}
+.package.p4 {
+	background-color: #673AB7;
+}
+.package.p5 {
+	background-color: #F44336;
+}
+.package.p6 {
+	background-color: #CDDC39;
+}
+.package.p7 {
+	background-color: #E91E63;
+}
+.package.p8 {
+	background-color: #4CAF50;
+}
+.package.p9 {
+	background-color: #FFC107;
 }
 
 #chord {

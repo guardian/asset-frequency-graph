@@ -2,6 +2,8 @@ module.exports = function (config, callback) {
     config = config || {
         basePath: '../frontend',
         staticFolder: 'static/src/javascripts',
+        requireConfig: '/grunt-configs/requirejs.js',
+        gruntJit: true,
         seeds: [
             'bootstraps/app.js',
             'bootstraps/commercial.js',
@@ -61,5 +63,5 @@ module.exports = function (config, callback) {
 };
 
 if (require.main === module) {
-    module.exports();
+    module.exports(null, function () {});
 }
