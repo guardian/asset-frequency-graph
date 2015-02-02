@@ -5,13 +5,11 @@ module.exports = function (config, callback) {
         requireConfig: '/grunt-configs/requirejs.js',
         gruntJit: true,
         seeds: [
-            'bootstraps/app.js',
-            'bootstraps/commercial.js',
             'core.js'
         ],
-        limit: 30,
+        limit: 50,
         destination: 'tmp/summary.html',
-        verbose: false
+        verbose: true
     };
 
     var mkdirp = require('mkdirp');
