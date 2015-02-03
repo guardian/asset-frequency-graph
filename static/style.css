@@ -185,3 +185,8 @@ aside {
 .value.boolean {
 	color: #4687b8;
 }
+
+.timechart {
+	width: 100%;
+	height: 400px;
+}
