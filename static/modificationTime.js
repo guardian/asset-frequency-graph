@@ -15,6 +15,9 @@
             fileDetails = raw[file];
 
         if (!fileDetails) {
+            if (tableRow.parents('tbody').length > 0) {
+                return;
+            }
             var clear = [];
             table.find('tbody tr').each(function (i, row) {
                 row = $(row);
