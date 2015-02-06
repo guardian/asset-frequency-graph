@@ -7,10 +7,11 @@ module.exports = function (config, callback) {
         seeds: [
             'core.js'
         ],
-        limit: null,
+        limit: 30,
         destination: 'tmp/summary.html',
-        verbose: true,
-        fromDisk: true
+        verbose: false,
+        fromDisk: true,
+        fullPage: true
     };
 
     var mkdirp = require('mkdirp');
