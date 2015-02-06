@@ -1,7 +1,24 @@
 (function () {
-    var packagesSize = computeSizeOfPackages(RAW_DATA);
+    var packagesSize = computeSizeOfPackages(RAW_DATA),
+        LIMIT_DAYS = 15;
 
     $('.cost-function').each(function (i, element) {
+        computeCost(element, function (daysSinceLastChange, pack) {
+            return gzipCostFunction(daysSinceLastChange, packagesSize[pack]);
+        }, function (result) {
+            return prettyBytes(result);
+        });
+    });
+
+    $('.cache-hit').each(function (i, element) {
+        computeCost(element, function (daysSinceLastChange, pack) {
+            return cacheCostFunction(daysSinceLastChange, packagesSize[pack]);
+        }, function (result) {
+            return (result / LIMIT_DAYS * 100).toFixed(2) + '%';
+        });
+    });
+
+    function computeCost (element, fn, format) {
         element = $(element);
         var pack = element.data('pack'),
             data = RAW_DATA.history.packages[pack],
@@ -9,24 +26,32 @@
             totalCost = 0,
             daysSinceLastChange = 0;
 
-        startDate.setDate(startDate.getDate() - 15);
+        startDate.setDate(startDate.getDate() - LIMIT_DAYS);
         iterateDays(startDate, function (runningDate) {
             if (data[runningDate] > 0) {
                 daysSinceLastChange = 0;
             } else {
                 daysSinceLastChange += 1;
             }
-            totalCost += costFunction(daysSinceLastChange, packagesSize[pack]);
+            totalCost += fn(daysSinceLastChange, pack);
         });
-        element.html(prettyBytes(totalCost));
-    });
+        element.html(format(totalCost));
+    }
 
-    function costFunction (daysSinceLastChange, packSize) {
-        var usersWithCache = 0;
+    function gzipCostFunction (daysSinceLastChange, packSize) {
+        return (RAW_DISTRIBUTION.uniqueVisitors - usersWithCache(daysSinceLastChange)) * packSize;
+    }
+
+    function cacheCostFunction (daysSinceLastChange, packSize) {
+        return usersWithCache(daysSinceLastChange) / RAW_DISTRIBUTION.uniqueVisitors;
+    }
+
+    function usersWithCache (daysSinceLastChange) {
+        var number = 0;
         for (var i = 0; i < daysSinceLastChange; i += 1) {
-            usersWithCache += RAW_DISTRIBUTION.returningVisitors[i];
+            number += RAW_DISTRIBUTION.returningVisitors[i];
         }
-        return (RAW_DISTRIBUTION.uniqueVisitors - usersWithCache) * packSize;
+        return number;
     }
 
     function computeSizeOfPackages (data) {
