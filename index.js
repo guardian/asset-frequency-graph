@@ -7,11 +7,13 @@ module.exports = function (config, callback) {
         seeds: [
             'core.js'
         ],
-        limit: 30,
+        limit: null,
         destination: 'tmp/summary.html',
         verbose: false,
-        fromDisk: true,
-        fullPage: true
+        fromDisk: false,
+        fullPage: true,
+        costDays: 15,
+        distribution: null
     };
 
     var mkdirp = require('mkdirp');
@@ -38,7 +40,7 @@ module.exports = function (config, callback) {
             matrix = dependencies.matrix(graph);
 
         return git.repositoryHistory(merges, function (merge, files) {
-            analize.onMerge(dependentMap, stat, merge, files);
+            analize.onMerge(dependentMap, stat, graph, merge, files);
         }).then(function () {
             return analize.total(graph, matrix);
         });

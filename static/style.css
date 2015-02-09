@@ -91,17 +91,17 @@ aside {
     padding: 0.5em;
 }
 
-#json-tree ul {
+.json-tree ul {
 	margin: 0;
 	margin-bottom: 6px;
 	list-style: none;
 	box-sizing: border-box;
 }
-#json-tree ul:first-of-type {
+.json-tree ul:first-of-type {
 	padding-left: 2px;
 }
 
-#json-tree li {
+.json-tree li {
 	outline: 0;
 	list-style: none;
 }
@@ -123,11 +123,11 @@ aside {
 	content: "";
 }
 
-#json-tree {
+.json-tree {
 	font-family: Consolas, "Liberation Mono", Courier, monospace;
 	white-space: pre-line;
 }
-#json-tree i {
+.json-tree i {
 	display: inline-block;
 	width: 1em;
 	height: auto;
@@ -143,19 +143,19 @@ aside {
 	text-decoration: inherit;
 	-webkit-font-smoothing: antialiased;
 }
-#json-tree i:before {
+.json-tree i:before {
 	text-decoration: inherit;
 	display: inline-block;
 	cursor: default;
 	speak: none;
 }
-#json-tree .expand > i:before {
+.json-tree .expand > i:before {
 	content: "\25BE";
 }
-#json-tree .expand.closed > i:before {
+.json-tree .expand.closed > i:before {
 	content: "\25B8";
 }
-#json-tree i:before {
+.json-tree i:before {
 	content: " ";
 }
 
@@ -185,8 +185,19 @@ aside {
 .value.boolean {
 	color: #4687b8;
 }
+.strike {
+	text-decoration: line-through;
+}
 
 .timechart {
 	width: 100%;
 	height: 400px;
+}
+
+.highlight-change {
+	background-color: inherit;
+	transition: background-color 0.5s;
+}
+.highlighted {
+	background-color: #FFFF99;
 }

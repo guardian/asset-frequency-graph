@@ -1,6 +1,6 @@
 {
   "name": "asset-frequency-graph",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Asset frequency graph",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
     "gzip-size": "^1.0.0",
     "madge": "0.4.1",
     "mkdirp": "^0.5.0",
+    "moment": "^2.9.0",
     "pretty-bytes": "^1.0.2",
     "progress": "1.1.8",
     "uglify-js": "^2.4.16"
