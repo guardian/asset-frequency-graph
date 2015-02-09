@@ -86,7 +86,8 @@
 
             files.forEach(function (file) {
                 if (excludeInPackage.indexOf(file) === -1) {
-                    sizes[pack] += data.size[file];
+                    // Some files might be filtered out, default to 0
+                    sizes[pack] += data.size[file] || 0;
                 }
             });
         });
